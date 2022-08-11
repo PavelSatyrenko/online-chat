@@ -1,11 +1,8 @@
-const app = require("express")();
-const http = require("http").createServer(app);
-const io = require("socket.io")(http);
+const server = require("express")()
+    .use((req, res) => res.sendFile("/index.html", { root: __dirname }))
+    .listen(3000, () => console.log(`Listening on 3000`));
+const io = require("socket.io")(server);
 const mongo = require("mongodb").MongoClient;
-
-http.listen(3000, () => {
-    console.log("Listening on port 3000");
-});
 
 // Connect to MongoDB
 mongo.connect(
