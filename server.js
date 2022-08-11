@@ -1,6 +1,6 @@
 const server = require("express")()
     .use((req, res) => res.sendFile("/index.html", { root: __dirname }))
-    .listen(3000, () => console.log(`Listening on 3000`));
+    .listen((process.env.PORT || 3000), () => console.log(`Listening on 3000`));
 const io = require("socket.io")(server);
 const mongo = require("mongodb").MongoClient;
 
